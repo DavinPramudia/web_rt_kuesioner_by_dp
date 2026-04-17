@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
-    <header>
-        <h1>Admin Dashboard</h1>
-    </header>
+<header>
+    <h1>Admin Dashboard</h1>
+</header>
