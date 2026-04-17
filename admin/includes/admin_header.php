@@ -6,6 +6,6 @@
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
-<header>
-    <h1>Admin Dashboard</h1>
+<header class="admin-header">
+    <h1 class="admin-logo">Admin Dashboard</h1>
 </header>

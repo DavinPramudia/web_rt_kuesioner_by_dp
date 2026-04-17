@@ -2,10 +2,10 @@
 <?php include '../koneksi.php'; ?>
 <?php include './includes/admin_header.php'; ?>
 
-<main>
-    <div class="admin_content">
-        <h2>Selamat datang, <?= $_SESSION['username']; ?>!</h2>
-        <p>Gunakan menu untuk mengelola kuesioner.</p>
+<main class="admin-main">
+    <div class="admin-content">
+        <h2 class="admin-title">Selamat datang, <?= $_SESSION['username']; ?>!</h2>
+        <p class="admin-text">Gunakan menu untuk mengelola kuesioner.</p>
     </div>
 </main>
 
