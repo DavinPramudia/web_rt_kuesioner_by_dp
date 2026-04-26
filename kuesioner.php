@@ -21,6 +21,7 @@ $totalSteps = ceil(count($questions) / $perPage);
 </head>
 
 <body>
+<header class="header_kuesioner">
 
 <div class="container">
     <h2>Form Kuesioner</h2>
@@ -29,7 +30,7 @@ $totalSteps = ceil(count($questions) / $perPage);
 
         <!-- NAMA -->
         <div class="step active">
-            <label>Nama</label>
+            <label>Masukkan Nama Anda Di Bawah</label>
             <input type="text" name="nama" required>
         </div>
 
@@ -60,7 +61,7 @@ $totalSteps = ceil(count($questions) / $perPage);
 
     </form>
 </div>
-
+</header>   
 <script src="./script/script.js"></script>
 
 </body>
