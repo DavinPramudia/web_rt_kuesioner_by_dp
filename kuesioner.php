@@ -1,39 +1,67 @@
 <?php
 include "koneksi.php";
 $data = mysqli_query($koneksi, "SELECT * FROM pertanyaan");
+$questions = [];
+
+while ($row = mysqli_fetch_assoc($data)) {
+    $questions[] = $row;
+}
+
+$perPage = 5;
+$totalSteps = ceil(count($questions) / $perPage);
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Kuesioner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuesioner</title>
+
+<link rel="stylesheet" href="admin/css/style.css">
 </head>
+
 <body>
 
+<div class="container">
     <h2>Form Kuesioner</h2>
 
     <form action="simpan.php" method="POST">
-        <label>Nama</label><br>
-        <input type="text" name="nama" required><br><br>
 
-        <?php while($row = mysqli_fetch_assoc($data)) : ?>
-            <div style="margin-bottom:20px;">
-                <p><strong><?php echo $row['pertanyaan']; ?></strong></p>
+        <!-- NAMA -->
+        <div class="step active">
+            <label>Nama</label>
+            <input type="text" name="nama" required>
+        </div>
 
-                <input type="radio" name="jawaban[<?= $row['id_pertanyaan'] ?>]" value="4" required> Sangat Baik
+        <!-- PERTANYAAN PER 5 -->
+        <?php for ($i = 0; $i < count($questions); $i += $perPage): ?>
+            <div class="step">
 
-                <input type="radio" name="jawaban[<?= $row['id_pertanyaan'] ?>]" value="3"> Baik
+                <?php for ($j = $i; $j < $i + $perPage && $j < count($questions); $j++): ?>
+                    <div style="margin-bottom:20px;">
+                        <p><strong><?= $questions[$j]['pertanyaan']; ?></strong></p>
 
-                <input type="radio" name="jawaban[<?= $row['id_pertanyaan'] ?>]" value="2"> Cukup
-
-                <input type="radio" name="jawaban[<?= $row['id_pertanyaan'] ?>]" value="1"> Kurang
+                        <label><input type="radio" name="jawaban[<?= $questions[$j]['id_pertanyaan'] ?>]" value="4" required> Sangat Baik</label>
+                        <label><input type="radio" name="jawaban[<?= $questions[$j]['id_pertanyaan'] ?>]" value="3"> Baik</label>
+                        <label><input type="radio" name="jawaban[<?= $questions[$j]['id_pertanyaan'] ?>]" value="2"> Cukup</label>
+                        <label><input type="radio" name="jawaban[<?= $questions[$j]['id_pertanyaan'] ?>]" value="1"> Kurang</label>
+                    </div>
+                <?php endfor; ?>
 
             </div>
-        <?php endwhile; ?>
+        <?php endfor; ?>
 
-        <button type="submit">Kirim</button>
+        <!-- NAV -->
+        <div class="nav">
+            <button type="button" onclick="prevStep()">Previous</button>
+            <button type="button" onclick="nextStep()">Next</button>
+            <button type="submit" id="submitBtn" style="display:none;">Kirim</button>
+        </div>
+
     </form>
+</div>
+
+<script src="./script/script.js"></script>
 
 </body>
 </html>
