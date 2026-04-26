@@ -1,38 +1,61 @@
-<?php
-include './includes/auth.php';
+<?php 
 include '../koneksi.php';
 
-$data = mysqli_query($koneksi, "SELECT * FROM responden ORDER BY id_responden DESC");
+$page = basename($_SERVER['PHP_SELF']);
+
+$data = mysqli_query($koneksi, "
+    SELECT 
+        responden.nama,
+        AVG(jawaban.jawaban) AS rata_rata,
+        CASE 
+            WHEN AVG(jawaban.jawaban) >= 4 THEN 'Sangat Baik'
+            WHEN AVG(jawaban.jawaban) >= 3 THEN 'Baik'
+            WHEN AVG(jawaban.jawaban) >= 2 THEN 'Cukup'
+            ELSE 'Kurang'
+        END AS kategori,
+        MAX(jawaban.tanggal_isi) AS tanggal_isi
+    FROM jawaban
+    JOIN responden ON jawaban.id_responden = responden.id_responden
+    GROUP BY jawaban.id_responden
+");
 ?>
 
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hasil Kuesioner</title>
+    <title>Hasil</title>
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
-<h2 class="page-title">Data Responden</h2>
+<!-- SIDEBAR -->
+<?php include 'includes/sidebar.php'; ?>
 
-<table class="table-data" border="1" cellpadding="10">
-    <tr>
-        <th>ID</th>
-        <th>Nama</th>
-        <th>Tanggal Isi</th>
-    </tr>
 
-    <?php while($row = mysqli_fetch_assoc($data)) : ?>
-    <tr>
-        <td><?php echo $row['id_responden']; ?></td>
-        <td><?php echo htmlspecialchars($row['nama']); ?></td>
-        <td><?php echo $row['tanggal_isi']; ?></td>
-    </tr>
-    <?php endwhile; ?>
-</table>
 
-<br>
-<a href="dashboard.php">Kembali</a>
+<div class="hasil-content">
+    <h1>Hasil Kuesioner</h1>
+
+    <div class="hasil-card">
+        <table>
+            <tr>
+                <th>Nama</th>
+                <th>Rata-rata</th>
+                <th>Kategori</th>
+                <th>Waktu Isi</th>
+            </tr>
+
+            <?php while($row = mysqli_fetch_assoc($data)): ?>
+            <tr>
+                <td><?= $row['nama'] ?></td>
+                <td><?= number_format($row['rata_rata'], 2) ?></td>
+                <td><?= $row['kategori'] ?></td>
+                <td><?= $row['tanggal_isi'] ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

@@ -38,27 +38,32 @@ if (isset($_POST["login"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin</title>
-    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
 </head>
+
 <body>
 
-<div class="login-container">
-    <h2>Login Admin</h2>
+<div class="login-wrapper">
+    <div class="login-container">
+        <h2>Login Admin</h2>
 
-    <?php if (isset($error)) : ?>
-        <p class="error"><?= $error; ?></p>
-    <?php endif; ?>
+        <?php if (isset($error)) : ?>
+            <p class="error"><?= $error; ?></p>
+        <?php endif; ?>
 
-    <form method="POST">
-        <label>Username</label>
-        <input type="text" name="username" required>
+        <form method="POST">
+            <label>Username</label>
+            <input type="text" name="username" required>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+            <label>Password</label>
+            <input type="password" name="password" required>
 
-        <button type="submit" name="login">Login</button>
-    </form>
+            <button type="submit" name="login">Login</button>
+        </form>
+    </div>
 </div>
 
 </body>
+
 </html>

@@ -2,6 +2,8 @@
 include './includes/auth.php';
 include '../koneksi.php';
 
+$page = basename($_SERVER['PHP_SELF']);
+
 $id_pertanyaan = $_GET['id'];
 
 $data = mysqli_query($koneksi, "SELECT * FROM pertanyaan WHERE id_pertanyaan='$id_pertanyaan'");
@@ -22,20 +24,39 @@ if (isset($_POST['update'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Pertanyaan</title>
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
-<div class="edit-container">
-    <h2 class="page-title">Edit Pertanyaan</h2>
+<!-- SIDEBAR -->
+<?php include 'includes/sidebar.php'; ?>
 
-    <form method="POST" class="form-edit">
-        <input type="text" name="pertanyaan" class="input-text" value="<?= $row['pertanyaan']; ?>" required>
-        <button type="submit" name="update" class="btn-primary">Update</button>
-    </form>
+<!-- CONTENT -->
+<div class="dashboard-content">
+
+    <h1>Edit Pertanyaan</h1>
+
+    <div class="dashboard-card">
+
+        <form method="POST" class="form-pertanyaan">
+
+            <input 
+                type="text" 
+                name="pertanyaan" 
+                class="input-text" 
+                value="<?= $row['pertanyaan']; ?>" 
+                required
+            >
+
+            <button type="submit" name="update" class="pertanyaan-btn-primary">
+                Update
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
-
-<br>
-<a href="pertanyaan.php">Kembali</a>
 
 </body>
 </html>

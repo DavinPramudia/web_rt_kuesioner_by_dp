@@ -1,0 +1,300 @@
+/* ========================= */
+/* RESET & GLOBAL */
+/* ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* ========================= */
+/* LOGIN */
+/* ========================= */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.login-container {
+    width: 350px;
+    max-width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.login-container label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-size: 14px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #1abc9c;
+}
+
+.login-container button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #16a085;
+}
+
+.error {
+    background: #e74c3c;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* ========================= */
+/* SIDEBAR */
+/* ========================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 100vh;
+    background: #2c3e50;
+    padding: 20px;
+    color: white;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+    color: white;
+    padding-left: 18px;
+}
+
+.sidebar a.active {
+    background: #1abc9c;
+    color: white;
+}
+
+/* ========================= */
+/* CONTENT */
+/* ========================= */
+.dashboard-content,
+.pertanyaan-content,
+.hasil-content {
+    margin-left: 230px;
+    padding: 25px;
+}
+
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+.dashboard-card,
+.pertanyaan-card,
+.hasil-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.pertanyaan-card,
+.hasil-card {
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+/* ========================= */
+/* FORM */
+/* ========================= */
+.form-pertanyaan {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.input-text {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.input-text:focus {
+    outline: none;
+    border-color: #1abc9c;
+}
+
+.pertanyaan-btn-primary {
+    padding: 10px 15px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pertanyaan-btn-primary:hover {
+    background: #16a085;
+}
+
+/* ========================= */
+/* TABLE */
+/* ========================= */
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+table th {
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+}
+
+table td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    word-break: break-word;
+}
+
+table tr:hover {
+    background: #f9f9f9;
+}
+
+/* ========================= */
+/* BUTTON ACTION */
+/* ========================= */
+.pertanyaan-btn-edit {
+    padding: 6px 10px;
+    background: #f39c12;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pertanyaan-btn-delete {
+    padding: 6px 10px;
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* ========================= */
+/* RESPONSIVE MOBILE */
+/* ========================= */
+@media (max-width: 768px) {
+
+    /* SIDEBAR → TOP */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    .sidebar h2 {
+        display: none;
+    }
+
+    .sidebar a {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    /* CONTENT FULL */
+    .dashboard-content,
+    .pertanyaan-content,
+    .hasil-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    /* FORM */
+    .form-pertanyaan {
+        flex-direction: column;
+    }
+
+    .input-text,
+    .pertanyaan-btn-primary {
+        width: 100%;
+    }
+
+    /* TABLE */
+    table {
+        min-width: 500px;
+        font-size: 12px;
+    }
+
+    table th,
+    table td {
+        padding: 8px;
+    }
+
+    /* BUTTON ACTION STACK */
+    .pertanyaan-btn-edit,
+    .pertanyaan-btn-delete {
+        display: block;
+        width: 80%;
+        margin: 5px auto;
+        text-align: center;
+    }
+}
